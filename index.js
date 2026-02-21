@@ -200,7 +200,8 @@ client.once("ready", () => {
   console.log(`Logged in as ${client.user.tag}`);
 });
 
-client.login("MTQ3NDYzNzI2NjE5MzIxOTcwNA.Gy_oBn.uRr5yhJ8rbGflZUnKfkYC2XZ_q4q9Q87QGn968");
+client.login("MTQ3NDYzNzI2NjE5MzIxOTcwNA.GL6YIM.cDtx-tIOgBkeglf9-6ikGIoSe2y3lNn7U7ohbs");
+
 
 
 
