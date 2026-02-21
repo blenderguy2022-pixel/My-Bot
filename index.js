@@ -37,6 +37,7 @@ const actions = {
   yearn: "yearns for",
   bite: "bites",
   blush: "blushes because of",
+  trap: "wants to trap",
   blowjob: "gives a blowjob to",
   lewd: "is getting lewd for",
   fuck: "wants to fuck",
@@ -217,6 +218,7 @@ client.once("ready", () => {
 });
 
 client.login(process.env.TOKEN);
+
 
 
 
