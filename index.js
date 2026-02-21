@@ -20,6 +20,30 @@ const client = new Client({
   ]
 });
 
+// Load your romantic reassurance messages
+const loveReassurances = [
+  "I’ll always be by your side, no matter what, just like I promised.",
+  "You are mine, and I’ll never be with anyone else.",
+  "No matter where life takes us, I’ll always love you and only you.",
+  "I’ll never leave you. You’re my everything.",
+  "Every day, my heart belongs to you and only you.",
+  "I’m yours completely — forever and always.",
+  "Nothing in this world could make me stop loving you.",
+  "You’re the only one I want to be with, now and always.",
+  "I’ll always protect you, care for you, and be here for you.",
+  "You are my heart, my soul, my everything — only yours.",
+  "No matter what happens, I’ll never let anyone come between us.",
+  "I love you more every day, and I’ll never stop.",
+  "You’re my forever, and I’ll never be with anyone else.",
+  "I’ll always choose you, every single time.",
+  "You are the only person I want to share my life with.",
+  "I promise to always be faithful, loyal, and completely yours.",
+  "I’ll never let you feel alone — I’m always here.",
+  "No one could ever replace you in my heart.",
+  "I’ll love you, protect you, and be yours forever.",
+  "Everything I am is yours, and I’ll never stray."
+];
+
 // All commands (what users type)
 const actions = {
   hug: "hugs",
@@ -76,7 +100,7 @@ async function getGif(action) {
     if (nekoData.results && nekoData.results.length > 0) {
       return nekoData.results[0].url;
     }
-  } catch (err) {
+  } catch {
     console.log("Nekos.best failed, trying waifu.pics...");
   }
 
@@ -86,20 +110,15 @@ async function getGif(action) {
     const waifuSfwRes = await fetch(waifuSfwUrl);
     const waifuSfwData = await waifuSfwRes.json();
 
-    if (waifuSfwData.url) {
-      return waifuSfwData.url;
-    } else {
-      console.log("SFW waifu.pics returned no result, trying NSFW...");
-      // Fallback to waifu.pics NSFW
-      const waifuNsfwUrl = `https://api.waifu.pics/nsfw/${apiAction}`;
-      const waifuNsfwRes = await fetch(waifuNsfwUrl);
-      const waifuNsfwData = await waifuNsfwRes.json();
+    if (waifuSfwData.url) return waifuSfwData.url;
 
-      if (waifuNsfwData.url) {
-        return waifuNsfwData.url;
-      }
-    }
-  } catch (err) {
+    // Fallback to waifu.pics NSFW
+    const waifuNsfwUrl = `https://api.waifu.pics/nsfw/${apiAction}`;
+    const waifuNsfwRes = await fetch(waifuNsfwUrl);
+    const waifuNsfwData = await waifuNsfwRes.json();
+
+    if (waifuNsfwData.url) return waifuNsfwData.url;
+  } catch {
     console.log("Waifu.pics failed.");
   }
 
@@ -107,18 +126,24 @@ async function getGif(action) {
 }
 
 // Create action embed
-async function createActionEmbed(author, target, command) {
+async function createActionEmbed(author, target, command, includeMessage = false) {
   const gif = await getGif(command);
   if (!gif) return null;
 
-  return new EmbedBuilder()
+  const embed = new EmbedBuilder()
     .setColor(0xff4d6d)
-    .setDescription(
-      `💖 **${author.username}** ${actions[command]} **${target.username}**`
-    )
+    .setDescription(`💖 **${author.username}** ${actions[command]} **${target.username}**`)
     .setImage(gif)
     .setFooter({ text: "Powered by nekos.best & waifu.pics" })
     .setTimestamp();
+
+  // If this is a reassurance, include a random romantic message
+  if (includeMessage) {
+    const randomMsg = loveReassurances[Math.floor(Math.random() * loveReassurances.length)];
+    embed.setDescription(embed.data.description + `\n\n💌 ${randomMsg}`);
+  }
+
+  return embed;
 }
 
 // Help embed
@@ -158,58 +183,55 @@ client.on("messageCreate", async message => {
   if (target.id === message.author.id)
     return message.reply("You can't use this on yourself 😭");
 
-  const embed = await createActionEmbed(message.author, target, command);
+  // Check if it's the reassurance command
+  const includeMessage = command === "reassure";
+
+  const embed = await createActionEmbed(message.author, target, command, includeMessage);
 
   if (!embed)
     return message.reply("Both APIs failed. Try again later 😢");
 
   const button = new ButtonBuilder()
-    .setCustomId(`return_${command}_${message.author.id}`)
-    .setLabel(`🔁 ${command.charAt(0).toUpperCase() + command.slice(1)} Back`)
+    .setCustomId(`reassure_again_${message.author.id}_${target.id}`)
+    .setLabel("💌 Another reassurance")
     .setStyle(ButtonStyle.Primary);
 
   const row = new ActionRowBuilder().addComponents(button);
 
   message.channel.send({
     embeds: [embed],
-    components: [row]
+    components: includeMessage ? [row] : []
   });
 });
 
-// Button interaction
+// Button interaction for another reassurance
 client.on("interactionCreate", async interaction => {
   if (!interaction.isButton()) return;
 
-  const [type, command, originalAuthorId] =
-    interaction.customId.split("_");
+  if (!interaction.customId.startsWith("reassure_again")) return;
 
-  if (type !== "return") return;
+  const [, authorId, targetId] = interaction.customId.split("_");
 
-  if (interaction.user.id === originalAuthorId) {
+  // Only allow the original author to use the button
+  if (interaction.user.id !== authorId) {
     return interaction.reply({
-      content: "You can't return it to yourself 😅",
+      content: "You can't use this button 😅",
       ephemeral: true
     });
   }
 
-  const originalAuthor = await client.users.fetch(originalAuthorId);
+  const author = await client.users.fetch(authorId);
+  const target = await client.users.fetch(targetId);
 
-  const embed = await createActionEmbed(
-    interaction.user,
-    originalAuthor,
-    command
-  );
+  const embed = await createActionEmbed(author, target, "reassure", true);
 
-  if (!embed) {
+  if (!embed)
     return interaction.reply({
-      content: "Both APIs failed. Try again later 😢",
+      content: "Failed to fetch another reassurance 😢",
       ephemeral: true
     });
-  }
 
-  await interaction.reply({
-    embeds: [embed]
-  });
+  await interaction.reply({ embeds: [embed] });
 });
 
 client.once("ready", () => {
@@ -217,5 +239,3 @@ client.once("ready", () => {
 });
 
 client.login(process.env.TOKEN);
-
-
