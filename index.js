@@ -30,7 +30,7 @@ const actions = {
   punch: "punches",
   highfive: "highfives",
   wave: "waves at",
-
+  angry: "is angry at",
   miss: "misses",
   yearn: "yearns for",
   bite: "bites",
@@ -203,3 +203,4 @@ client.once("ready", () => {
 // 🔥 PUT YOUR TOKEN HERE
 
 client.login("MTQ3NDYzNzI2NjE5MzIxOTcwNA.Gtnu-Y.zDL_usXaZ06PFP3j67Y1LBXV07f1utTXkAa1Xo");
+
