@@ -1,5 +1,3 @@
-require("dotenv").config();
-
 const {
   Client,
   GatewayIntentBits,
@@ -202,7 +200,8 @@ client.once("ready", () => {
   console.log(`Logged in as ${client.user.tag}`);
 });
 
-client.login(process.env.TOKEN);
+client.login("MTQ3NDYzNzI2NjE5MzIxOTcwNA.Gy_oBn.uRr5yhJ8rbGflZUnKfkYC2XZ_q4q9Q87QGn968");
+
 
 
 
