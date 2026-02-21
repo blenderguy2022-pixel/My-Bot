@@ -10,8 +10,9 @@ const {
 const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
-const prefix = "!";
+const cron = require("node-cron");
 
+const prefix = "!";
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
@@ -20,7 +21,10 @@ const client = new Client({
   ]
 });
 
-// Load your romantic reassurance messages
+// Replace with your girlfriend's Discord ID
+const girlfriendId = "798197794649276456";
+
+// Romantic reassurance messages
 const loveReassurances = [
   "I’ll always be by your side, no matter what, just like I promised baby.",
   "You are mine, and I’ll never be with anyone else darling.",
@@ -43,7 +47,24 @@ const loveReassurances = [
   "Everything I am is yours, and I’ll never let that change Myru."
 ];
 
-// All commands (what users type)
+// Good morning and good night messages
+const goodMorningMessages = [
+  "Goodd morninggg, my love! 🌅 You are always my first thought after waking up, today and for the rest of my life 💖",
+  "Gurmornin babyyy!! Rise and shine cutie! Daily reminder that my heart is always with you 😘",
+  "Good morninggg my Myruuu! I hope my beautiful girlfriend has a beautiful day today 💕",
+  "Wake up, my darling 😚 Sending you a hug and all my love 💌",
+  "Goodd Morningg jaanu! 🌞 I loveee youuu soooo muchhhh. Hope you like waking up to my love ❤️"
+];
+
+const goodNightMessages = [
+  "Good night, my love 🌙 I might or might not be here right now , but I always hold you in my heart 💖",
+  "Sweet dreams, cutie 😘 Remember, you’re mine forever and I am yours. Even in our dreams ❤️",
+  "Goodd Nighttt my love 🌌 I might be asleep right now , but just know I am dreaming of you , and I'll protect and love you even in my dreams 💌",
+  "Take care and Sleep well my darling 🌙 As the world gets dark , our love grows brighter and in this silence , our hearts beat together 💖",
+  "Good night sweetheart 🌠 I love you when I am awake and I love even more when I am asleep , planning a life with you in my dreams that will soon be real 😚"
+];
+
+// All commands
 const actions = {
   hug: "hugs",
   kiss: "kisses",
@@ -74,7 +95,7 @@ const actions = {
   handholding: "holds hands with"
 };
 
-// Fallback map (unsupported → supported)
+// Fallback map
 const fallbackMap = {
   miss: "cry",
   yearn: "cry",
@@ -86,45 +107,35 @@ const fallbackMap = {
   hungry: "nom"
 };
 
-// Fetch GIF with fallback logic
+// Fetch GIF
 async function getGif(action) {
   const apiAction = fallbackMap[action] || action;
 
-  // Try nekos.best first
   try {
-    const nekoUrl = `https://nekos.best/api/v2/${apiAction}`;
-    const nekoRes = await fetch(nekoUrl);
+    const nekoRes = await fetch(`https://nekos.best/api/v2/${apiAction}`);
     const nekoData = await nekoRes.json();
+    if (nekoData.results && nekoData.results.length > 0) return nekoData.results[0].url;
+  } catch {}
 
-    if (nekoData.results && nekoData.results.length > 0) {
-      return nekoData.results[0].url;
-    }
-  } catch {
-    console.log("Nekos.best failed, trying waifu.pics...");
-  }
-
-  // Fallback to waifu.pics SFW
   try {
-    const waifuSfwUrl = `https://api.waifu.pics/sfw/${apiAction}`;
-    const waifuSfwRes = await fetch(waifuSfwUrl);
+    const waifuSfwRes = await fetch(`https://api.waifu.pics/sfw/${apiAction}`);
     const waifuSfwData = await waifuSfwRes.json();
-
     if (waifuSfwData.url) return waifuSfwData.url;
 
-    // Fallback to waifu.pics NSFW
-    const waifuNsfwUrl = `https://api.waifu.pics/nsfw/${apiAction}`;
-    const waifuNsfwRes = await fetch(waifuNsfwUrl);
+    const waifuNsfwRes = await fetch(`https://api.waifu.pics/nsfw/${apiAction}`);
     const waifuNsfwData = await waifuNsfwRes.json();
-
     if (waifuNsfwData.url) return waifuNsfwData.url;
-  } catch {
-    console.log("Waifu.pics failed.");
-  }
+  } catch {}
 
   return null;
 }
 
-// Create action embed
+// Pick random message
+function getRandomMessage(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+// Create embed
 async function createActionEmbed(author, target, command, includeMessage = false) {
   const gif = await getGif(command);
   if (!gif) return null;
@@ -136,13 +147,30 @@ async function createActionEmbed(author, target, command, includeMessage = false
     .setFooter({ text: "Powered by nekos.best & waifu.pics" })
     .setTimestamp();
 
-  // If this is a reassurance, include a random romantic message
   if (includeMessage) {
-    const randomMsg = loveReassurances[Math.floor(Math.random() * loveReassurances.length)];
-    embed.setDescription(embed.data.description + `\n\n💌 ${randomMsg}`);
+    const msg = getRandomMessage(loveReassurances);
+    embed.setDescription(embed.data.description + `\n\n💌 ${msg}`);
   }
 
   return embed;
+}
+
+// Add this above the createHelpEmbed function
+async function sendDailyMessage(messages) {
+  try {
+    const user = await client.users.fetch(girlfriendId);
+    const msg = getRandomMessage(messages);
+    const gif = await getGif("hug"); // fetch a hug GIF
+    const embed = new EmbedBuilder()
+      .setColor(0xff4d6d)
+      .setDescription(msg)
+      .setImage(gif) // attach the hug GIF
+      .setFooter({ text: "💖 Always yours" })
+      .setTimestamp();
+    user.send({ embeds: [embed] });
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 // Help embed
@@ -160,73 +188,53 @@ function createHelpEmbed() {
     .setTimestamp();
 }
 
+// Message listener
 client.on("messageCreate", async message => {
-  if (message.author.bot) return;
-  if (!message.content.startsWith(prefix)) return;
+  if (message.author.bot || !message.content.startsWith(prefix)) return;
 
   const args = message.content.slice(prefix.length).trim().split(/ +/);
   const command = args[0].toLowerCase();
   const target = message.mentions.users.first();
 
-  if (command === "help") {
-    return message.channel.send({
-      embeds: [createHelpEmbed()]
-    });
-  }
-
+  if (command === "help") return message.channel.send({ embeds: [createHelpEmbed()] });
   if (!actions[command]) return;
+  if (!target) return message.reply("You must mention someone!");
+  if (target.id === message.author.id) return message.reply("You can't use this on yourself 😭");
 
-  if (!target)
-    return message.reply("You must mention someone!");
-
-  if (target.id === message.author.id)
-    return message.reply("You can't use this on yourself 😭");
-
-  // Check if it's the reassurance command
   const includeMessage = command === "reassure";
 
   const embed = await createActionEmbed(message.author, target, command, includeMessage);
+  if (!embed) return message.reply("Both APIs failed. Try again later 😢");
 
-  if (!embed)
-    return message.reply("Both APIs failed. Try again later 😢");
+  let components = [];
+  if (includeMessage) {
+    const button = new ButtonBuilder()
+      .setCustomId(`reassure_again_${message.author.id}_${target.id}`)
+      .setLabel("💌 Another reassurance")
+      .setStyle(ButtonStyle.Primary);
 
-  const button = new ButtonBuilder()
-    .setCustomId(`reassure_again_${message.author.id}_${target.id}`)
-    .setLabel("💌 Another reassurance")
-    .setStyle(ButtonStyle.Primary);
+    components = [new ActionRowBuilder().addComponents(button)];
+  }
 
-  const row = new ActionRowBuilder().addComponents(button);
-
-  message.channel.send({
-    embeds: [embed],
-    components: includeMessage ? [row] : []
-  });
+  message.channel.send({ embeds: [embed], components });
 });
 
-// Button interaction for another reassurance
+// Button interaction
 client.on("interactionCreate", async interaction => {
   if (!interaction.isButton()) return;
-
   if (!interaction.customId.startsWith("reassure_again")) return;
 
   const parts = interaction.customId.split("_");
-  const authorId = parts[2]; // message.author.id
-  const targetId = parts[3]; // target.id
+  const authorId = parts[2];
+  const targetId = parts[3];
 
   try {
     const author = await client.users.fetch(authorId);
     const target = await client.users.fetch(targetId);
 
     const embed = await createActionEmbed(author, target, "reassure", true);
+    if (!embed) return interaction.reply({ content: "Failed 😢", ephemeral: true });
 
-    if (!embed) {
-      return interaction.reply({
-        content: "Failed to fetch another reassurance 😢",
-        ephemeral: true
-      });
-    }
-
-    // Create the button again so it appears on this new embed too
     const button = new ButtonBuilder()
       .setCustomId(`reassure_again_${authorId}_${targetId}`)
       .setLabel("💌 Another reassurance")
@@ -234,24 +242,34 @@ client.on("interactionCreate", async interaction => {
 
     const row = new ActionRowBuilder().addComponents(button);
 
-    // Send the embed with the button
     await interaction.reply({ embeds: [embed], components: [row] });
-
   } catch (err) {
     console.log(err);
-    return interaction.reply({
-      content: "Something went wrong 😢",
-      ephemeral: true
-    });
+    interaction.reply({ content: "Something went wrong 😢", ephemeral: true });
   }
 });
 
-client.once("ready", () => {
-  console.log(`Logged in as ${client.user.tag}`);
-});
+// Daily messages
+async function sendDailyMessage(messages) {
+  try {
+    const user = await client.users.fetch(girlfriendId);
+    const msg = getRandomMessage(messages);
+    const gif = await getGif("hug");
+    const embed = new EmbedBuilder()
+      .setColor(0xff4d6d)
+      .setDescription(msg)
+      .setImage(gif)
+      .setFooter({ text: "💖 Always yours" })
+      .setTimestamp();
+    user.send({ embeds: [embed] });
+  } catch (err) {
+    console.log(err);
+  }
+}
 
+// Schedule Good morning (8:00 AM) and Good night (10:00 PM) in Asia/Kolkata timezone
+cron.schedule("0 7 * * *", () => sendDailyMessage(goodMorningMessages), { timezone: "Asia/Kolkata" });
+cron.schedule("0 1 * * *", () => sendDailyMessage(goodNightMessages), { timezone: "Asia/Kolkata" });
+
+client.once("ready", () => console.log(`Logged in as ${client.user.tag}`));
 client.login(process.env.TOKEN);
-
-
-
-
