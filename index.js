@@ -77,14 +77,24 @@ async function getGif(action) {
     console.log("Nekos.best failed, trying waifu.pics...");
   }
 
-  // Fallback to waifu.pics
+  // Fallback to waifu.pics SFW
   try {
-    const waifuUrl = `https://api.waifu.pics/sfw/${apiAction}`;
-    const waifuRes = await fetch(waifuUrl);
-    const waifuData = await waifuRes.json();
+    const waifuSfwUrl = `https://api.waifu.pics/sfw/${apiAction}`;
+    const waifuSfwRes = await fetch(waifuSfwUrl);
+    const waifuSfwData = await waifuSfwRes.json();
 
-    if (waifuData.url) {
-      return waifuData.url;
+    if (waifuSfwData.url) {
+      return waifuSfwData.url;
+    } else {
+      console.log("SFW waifu.pics returned no result, trying NSFW...");
+      // Fallback to waifu.pics NSFW
+      const waifuNsfwUrl = `https://api.waifu.pics/nsfw/${apiAction}`;
+      const waifuNsfwRes = await fetch(waifuNsfwUrl);
+      const waifuNsfwData = await waifuNsfwRes.json();
+
+      if (waifuNsfwData.url) {
+        return waifuNsfwData.url;
+      }
     }
   } catch (err) {
     console.log("Waifu.pics failed.");
@@ -204,6 +214,7 @@ client.once("ready", () => {
 });
 
 client.login(process.env.TOKEN);
+
 
 
 
