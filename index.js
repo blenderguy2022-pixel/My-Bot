@@ -31,7 +31,7 @@ const loveReassurances = [
   "Nothing in this world could make me stop loving you ever meri jaan.",
   "You’re the only one I want to be with, now and always and as long as we live.",
   "I’ll always protect you, care for you, and be here for you. I can't live without my kuchupuchu",
-  "You are my heart, my soul, my everything, only yours.",
+  "You are my heart, my soul, my everything,and all of it is only yours.",
   "No matter what happens, I’ll never let anyone come between us baby. Its just us and beautiful life with your future pets",
   "I love you more every day, and I’ll never stop , because I simply can't stop falling more and more for this marvelous girl.",
   "You’re my forever, and I’ll never be with anyone else , not for a second.",
@@ -238,4 +238,5 @@ client.once("ready", () => {
 });
 
 client.login(process.env.TOKEN);
+
 
