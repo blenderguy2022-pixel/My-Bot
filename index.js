@@ -202,8 +202,10 @@ client.once("ready", () => {
   console.log(`Logged in as ${client.user.tag}`);
 });
 
-// 🔥 PUT YOUR TOKEN HERE
+console.log("TOKEN VALUE:", process.env.TOKEN);
+console.log("TOKEN LENGTH:", process.env.TOKEN?.length);
 
 client.login(process.env.TOKEN);
+
 
 
