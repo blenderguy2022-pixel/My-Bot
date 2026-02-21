@@ -51,7 +51,7 @@ const actions = {
 const fallbackMap = {
   miss: "cry",
   yearn: "cry",
-  sleepy: "pat",
+  sleepy: "sleep",
   thumbsup: "smile",
   thinking: "smile",
   handholding: "handhold"
@@ -201,4 +201,5 @@ client.once("ready", () => {
 });
 
 // 🔥 PUT YOUR TOKEN HERE
+
 client.login("MTQ3NDYzNzI2NjE5MzIxOTcwNA.Gtnu-Y.zDL_usXaZ06PFP3j67Y1LBXV07f1utTXkAa1Xo");
