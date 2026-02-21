@@ -51,58 +51,58 @@ const actions = {
   handholding: "holds hands with"
 };
 
-// Fallback map (unsupported → supported)
-const fallbackMap = {
-  miss: "cry",
-  yearn: "cry",
-  sleepy: "sleep",
-  thumbsup: "smile",
-  thinking: "smile",
-  handholding: "handhold",
-  hungry: "nom"
-};
-
-// Fetch GIF with fallback logic
+// Main function to get a GIF/image
 async function getGif(action) {
   const apiAction = fallbackMap[action] || action;
 
-  // Try nekos.best first
-  try {
-    const nekoUrl = `https://nekos.best/api/v2/${apiAction}`;
-    const nekoRes = await fetch(nekoUrl);
-    const nekoData = await nekoRes.json();
-
-    if (nekoData.results && nekoData.results.length > 0) {
-      return nekoData.results[0].url;
+  // Define API attempts in order
+  const attempts = [
+    async () => { // nekos.best SFW
+      try {
+        const res = await fetch(`https://nekos.best/api/v2/${apiAction}`);
+        const data = await res.json();
+        return data.results?.[0]?.url || null;
+      } catch { return null; }
+    },
+    async () => { // waifu.pics SFW
+      try {
+        const res = await fetch(`https://api.waifu.pics/sfw/${apiAction}`);
+        const data = await res.json();
+        return data.url || null;
+      } catch { return null; }
+    },
+    async () => { // waifu.pics NSFW
+      try {
+        const res = await fetch(`https://api.waifu.pics/nsfw/${apiAction}`);
+        const data = await res.json();
+        return data.url || null;
+      } catch { return null; }
+    },
+    async () => { // nekos.life NSFW
+      try {
+        // Map some common actions for nekos.life
+        const nekosActions = {
+          blowjob: "blowjob",
+          fuck: "nsfw_neko_gif",
+          lewd: "lewd",
+          pussy: "pussy",
+          boobs: "boobs"
+        };
+        const nekosAction = nekosActions[action] || "lewd";
+        const res = await fetch(`https://nekos.life/api/v2/img/${nekosAction}`);
+        const data = await res.json();
+        return data.url || null;
+      } catch { return null; }
     }
-  } catch (err) {
-    console.log("Nekos.best failed, trying waifu.pics...");
+  ];
+
+  // Try each API in order until one returns a URL
+  for (const attempt of attempts) {
+    const url = await attempt();
+    if (url) return url;
   }
 
-  // Fallback to waifu.pics SFW
-  try {
-    const waifuSfwUrl = `https://api.waifu.pics/sfw/${apiAction}`;
-    const waifuSfwRes = await fetch(waifuSfwUrl);
-    const waifuSfwData = await waifuSfwRes.json();
-
-    if (waifuSfwData.url) {
-      return waifuSfwData.url;
-    } else {
-      console.log("SFW waifu.pics returned no result, trying NSFW...");
-      // Fallback to waifu.pics NSFW
-      const waifuNsfwUrl = `https://api.waifu.pics/nsfw/${apiAction}`;
-      const waifuNsfwRes = await fetch(waifuNsfwUrl);
-      const waifuNsfwData = await waifuNsfwRes.json();
-
-      if (waifuNsfwData.url) {
-        return waifuNsfwData.url;
-      }
-    }
-  } catch (err) {
-    console.log("Waifu.pics failed.");
-  }
-
-  return null;
+  return null; // All failed
 }
 
 // Create action embed
@@ -216,5 +216,6 @@ client.once("ready", () => {
 });
 
 client.login(process.env.TOKEN);
+
 
 
