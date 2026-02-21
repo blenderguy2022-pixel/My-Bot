@@ -38,6 +38,7 @@ const actions = {
   bite: "bites",
   blush: "blushes because of",
   blowjob: "gives a blowjob to",
+  fuck: "wants to fuck",
   cry: "cries because of",
   dance: "dances with",
   smile: "smiles at",
@@ -219,6 +220,7 @@ client.once("ready", () => {
 });
 
 client.login(process.env.TOKEN);
+
 
 
 
