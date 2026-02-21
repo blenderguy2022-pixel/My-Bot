@@ -1,0 +1,13 @@
+{
+  "name": "gifbot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.0.0",
+    "node-fetch": "^3.3.2"
+  }
+}
