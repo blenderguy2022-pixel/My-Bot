@@ -28,6 +28,7 @@ const actions = {
   cuddle: "cuddles",
   pat: "pats",
   punch: "punches",
+  reassure: "reassures you that he's only your boyfie forever",
   highfive: "highfives",
   waifu: "becomes a cute waifu for",
   wave: "waves at",
@@ -54,6 +55,7 @@ const actions = {
 const fallbackMap = {
   miss: "cry",
   yearn: "cry",
+  reassure: "hug",
   sleepy: "sleep",
   thumbsup: "smile",
   thinking: "smile",
@@ -215,4 +217,5 @@ client.once("ready", () => {
 });
 
 client.login(process.env.TOKEN);
+
 
