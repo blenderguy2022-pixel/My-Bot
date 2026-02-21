@@ -209,7 +209,6 @@ client.on("interactionCreate", async interaction => {
 
   if (!interaction.customId.startsWith("reassure_again")) return;
 
-  // Extract authorId and targetId from customId
   const parts = interaction.customId.split("_");
   const authorId = parts[2]; // message.author.id
   const targetId = parts[3]; // target.id
@@ -227,8 +226,16 @@ client.on("interactionCreate", async interaction => {
       });
     }
 
-    // Send the embed as a new message
-    await interaction.reply({ embeds: [embed] });
+    // Create the button again so it appears on this new embed too
+    const button = new ButtonBuilder()
+      .setCustomId(`reassure_again_${authorId}_${targetId}`)
+      .setLabel("💌 Another reassurance")
+      .setStyle(ButtonStyle.Primary);
+
+    const row = new ActionRowBuilder().addComponents(button);
+
+    // Send the embed with the button
+    await interaction.reply({ embeds: [embed], components: [row] });
 
   } catch (err) {
     console.log(err);
@@ -237,13 +244,14 @@ client.on("interactionCreate", async interaction => {
       ephemeral: true
     });
   }
-});;
+});
 
 client.once("ready", () => {
   console.log(`Logged in as ${client.user.tag}`);
 });
 
 client.login(process.env.TOKEN);
+
 
 
 
