@@ -209,34 +209,41 @@ client.on("interactionCreate", async interaction => {
 
   if (!interaction.customId.startsWith("reassure_again")) return;
 
-  const [, authorId, targetId] = interaction.customId.split("_");
+  // Extract authorId and targetId from customId
+  const parts = interaction.customId.split("_");
+  const authorId = parts[2]; // message.author.id
+  const targetId = parts[3]; // target.id
 
-  // Only allow the original author to use the button
-  if (interaction.user.id !== authorId) {
+  try {
+    const author = await client.users.fetch(authorId);
+    const target = await client.users.fetch(targetId);
+
+    const embed = await createActionEmbed(author, target, "reassure", true);
+
+    if (!embed) {
+      return interaction.reply({
+        content: "Failed to fetch another reassurance 😢",
+        ephemeral: true
+      });
+    }
+
+    // Send the embed as a new message
+    await interaction.reply({ embeds: [embed] });
+
+  } catch (err) {
+    console.log(err);
     return interaction.reply({
-      content: "You can't use this button 😅",
+      content: "Something went wrong 😢",
       ephemeral: true
     });
   }
-
-  const author = await client.users.fetch(authorId);
-  const target = await client.users.fetch(targetId);
-
-  const embed = await createActionEmbed(author, target, "reassure", true);
-
-  if (!embed)
-    return interaction.reply({
-      content: "Failed to fetch another reassurance 😢",
-      ephemeral: true
-    });
-
-  await interaction.reply({ embeds: [embed] });
-});
+});;
 
 client.once("ready", () => {
   console.log(`Logged in as ${client.user.tag}`);
 });
 
 client.login(process.env.TOKEN);
+
 
 
