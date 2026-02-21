@@ -37,6 +37,7 @@ const actions = {
   yearn: "yearns for",
   bite: "bites",
   blush: "blushes because of",
+  blowjob: "gives a blowjob to",
   cry: "cries because of",
   dance: "dances with",
   smile: "smiles at",
@@ -214,6 +215,7 @@ client.once("ready", () => {
 });
 
 client.login(process.env.TOKEN);
+
 
 
 
