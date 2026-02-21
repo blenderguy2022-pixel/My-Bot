@@ -29,6 +29,7 @@ const actions = {
   pat: "pats",
   punch: "punches",
   highfive: "highfives",
+  blowjob: "gives a blowjob to",
   wave: "waves at",
   angry: "is angry at",
   miss: "misses",
@@ -203,6 +204,7 @@ client.once("ready", () => {
 });
 
 client.login(process.env.TOKEN);
+
 
 
 
