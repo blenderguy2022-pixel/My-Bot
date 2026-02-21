@@ -32,13 +32,14 @@ const actions = {
   wave: "waves at",
   angry: "is angry at",
   miss: "misses",
+  hungry: "is hungry you should help them",
   yearn: "yearns for",
   bite: "bites",
   blush: "blushes because of",
   cry: "cries because of",
   dance: "dances with",
   smile: "smiles at",
-  sleepy: "feels sleepy next to",
+  eepy: "feels eepy next to",
   thumbsup: "gives a thumbs up to",
   thinking: "is thinking about",
   lick: "licks",
@@ -54,7 +55,8 @@ const fallbackMap = {
   sleepy: "sleep",
   thumbsup: "smile",
   thinking: "smile",
-  handholding: "handhold"
+  handholding: "handhold",
+  hungry: "nom"
 };
 
 // Fetch GIF with fallback logic
@@ -201,6 +203,7 @@ client.once("ready", () => {
 });
 
 client.login(process.env.TOKEN);
+
 
 
 
