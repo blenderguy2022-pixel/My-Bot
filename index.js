@@ -22,26 +22,25 @@ const client = new Client({
 
 // Load your romantic reassurance messages
 const loveReassurances = [
-  "I’ll always be by your side, no matter what, just like I promised.",
-  "You are mine, and I’ll never be with anyone else.",
-  "No matter where life takes us, I’ll always love you and only you.",
-  "I’ll never leave you. You’re my everything.",
-  "Every day, my heart belongs to you and only you.",
-  "I’m yours completely — forever and always.",
-  "Nothing in this world could make me stop loving you.",
-  "You’re the only one I want to be with, now and always.",
-  "I’ll always protect you, care for you, and be here for you.",
-  "You are my heart, my soul, my everything — only yours.",
-  "No matter what happens, I’ll never let anyone come between us.",
-  "I love you more every day, and I’ll never stop.",
-  "You’re my forever, and I’ll never be with anyone else.",
-  "I’ll always choose you, every single time.",
-  "You are the only person I want to share my life with.",
-  "I promise to always be faithful, loyal, and completely yours.",
-  "I’ll never let you feel alone — I’m always here.",
-  "No one could ever replace you in my heart.",
-  "I’ll love you, protect you, and be yours forever.",
-  "Everything I am is yours, and I’ll never stray."
+  "I’ll always be by your side, no matter what, just like I promised baby.",
+  "You are mine, and I’ll never be with anyone else darling.",
+  "No matter where life takes us, I’ll always love you and only you till the end of time sweetheart.",
+  "I’ll never leave you. You’re my everything, my Myru.",
+  "Every day, my heart belongs to you and only you and becomes more of you than me.",
+  "I’m yours completely , truly and entirely, forever and always Myru.",
+  "Nothing in this world could make me stop loving you ever meri jaan.",
+  "You’re the only one I want to be with, now and always and as long as we live.",
+  "I’ll always protect you, care for you, and be here for you. I can't live without my kuchupuchu",
+  "You are my heart, my soul, my everything, only yours.",
+  "No matter what happens, I’ll never let anyone come between us baby. Its just us and beautiful life with your future pets",
+  "I love you more every day, and I’ll never stop , because I simply can't stop falling more and more for this marvelous girl.",
+  "You’re my forever, and I’ll never be with anyone else , not for a second.",
+  "I’ll always choose you, every single time , every single second , my heart only knows to look at you.",
+  "You are the only person I want to share , and devote my life to Myru.",
+  "I promise to always be faithful, loyal, insanely loving and completely yours Myru baby.",
+  "I’ll never let you feel alone, I’m always here jaanu, to cheer you up and to listen to you.",
+  "No one could ever replace you in my heart , your place is engraved with a knife into it.",
+  "Everything I am is yours, and I’ll never let that change Myru."
 ];
 
 // All commands (what users type)
@@ -239,3 +238,4 @@ client.once("ready", () => {
 });
 
 client.login(process.env.TOKEN);
+
