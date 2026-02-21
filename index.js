@@ -50,60 +50,64 @@ const actions = {
   handholding: "holds hands with"
 };
 
-// Fallback map (unsupported → supported)
-const fallbackMap = {
-  miss: "cry",
-  yearn: "cry",
-  sleepy: "sleep",
-  thumbsup: "smile",
-  thinking: "smile",
-  handholding: "handhold",
-  hungry: "nom"
-};
+// Helper to get a random NHentai image
+async function getNhentaiImage() {
+  try {
+    const randomId = Math.floor(Math.random() * 500000) + 1; // Random doujin ID
+    const res = await fetch(`https://nhentai.net/api/gallery/${randomId}`);
+    if (!res.ok) return null;
 
-// Fetch GIF with fallback logic
+    const data = await res.json();
+    if (!data.media || !data.media.pages || data.media.pages.length === 0) return null;
+
+    const page = data.media.pages[0];
+    const ext = page.t === "j" ? "jpg" : page.t === "p" ? "png" : "gif";
+    const imageUrl = `https://i.nhentai.net/galleries/${data.media_id}/${page.num}.${ext}`;
+    return imageUrl;
+  } catch (err) {
+    console.log("NHentai fetch failed:", err.message);
+    return null;
+  }
+}
+
+// Main function to get a GIF/image
 async function getGif(action) {
   const apiAction = fallbackMap[action] || action;
 
-  // Try nekos.best first
-  try {
-    const nekoUrl = `https://nekos.best/api/v2/${apiAction}`;
-    const nekoRes = await fetch(nekoUrl);
-    const nekoData = await nekoRes.json();
-
-    if (nekoData.results && nekoData.results.length > 0) {
-      return nekoData.results[0].url;
+  // Define API attempts in order
+  const attempts = [
+    async () => { // nekos.best
+      const res = await fetch(`https://nekos.best/api/v2/${apiAction}`);
+      const data = await res.json();
+      return data.results?.[0]?.url || null;
+    },
+    async () => { // waifu.pics SFW
+      const res = await fetch(`https://api.waifu.pics/sfw/${apiAction}`);
+      const data = await res.json();
+      return data.url || null;
+    },
+    async () => { // waifu.pics NSFW
+      const res = await fetch(`https://api.waifu.pics/nsfw/${apiAction}`);
+      const data = await res.json();
+      return data.url || null;
+    },
+    async () => { // NHentai NSFW
+      return await getNhentaiImage();
     }
-  } catch (err) {
-    console.log("Nekos.best failed, trying waifu.pics...");
+  ];
+
+  // Try each API in order until one returns a URL
+  for (const attempt of attempts) {
+    try {
+      const url = await attempt();
+      if (url) return url;
+    } catch (err) {
+      // Ignore errors and move to next API
+    }
   }
 
-  // Fallback to waifu.pics SFW
-  try {
-    const waifuSfwUrl = `https://api.waifu.pics/sfw/${apiAction}`;
-    const waifuSfwRes = await fetch(waifuSfwUrl);
-    const waifuSfwData = await waifuSfwRes.json();
-
-    if (waifuSfwData.url) {
-      return waifuSfwData.url;
-    } else {
-      console.log("SFW waifu.pics returned no result, trying NSFW...");
-      // Fallback to waifu.pics NSFW
-      const waifuNsfwUrl = `https://api.waifu.pics/nsfw/${apiAction}`;
-      const waifuNsfwRes = await fetch(waifuNsfwUrl);
-      const waifuNsfwData = await waifuNsfwRes.json();
-
-      if (waifuNsfwData.url) {
-        return waifuNsfwData.url;
-      }
-    }
-  } catch (err) {
-    console.log("Waifu.pics failed.");
-  }
-
-  return null;
+  return null; // All failed
 }
-
 // Create action embed
 async function createActionEmbed(author, target, command) {
   const gif = await getGif(command);
@@ -215,6 +219,7 @@ client.once("ready", () => {
 });
 
 client.login(process.env.TOKEN);
+
 
 
 
