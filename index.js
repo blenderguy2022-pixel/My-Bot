@@ -29,7 +29,7 @@ const actions = {
   pat: "pats",
   punch: "punches",
   highfive: "highfives",
-  waifu: "gives a blowjob to",
+  waifu: "becomes a cute waifu for",
   wave: "waves at",
   angry: "is angry at",
   miss: "misses",
@@ -204,6 +204,7 @@ client.once("ready", () => {
 });
 
 client.login(process.env.TOKEN);
+
 
 
 
