@@ -49,19 +49,19 @@ const loveReassurances = [
 
 // Good morning and good night messages
 const goodMorningMessages = [
-  "Goodd morninggg, my love! 🌅 You are always my first thought after waking up, today and for the rest of my life 💖",
-  "Gurmornin babyyy!! Rise and shine cutie! Daily reminder that my heart is always with you 😘",
-  "Good morninggg my Myruuu! I hope my beautiful girlfriend has a beautiful day today 💕",
-  "Wake up, my darling 😚 Sending you a hug and all my love 💌",
-  "Goodd Morningg jaanu! 🌞 I loveee youuu soooo muchhhh. Hope you like waking up to my love ❤️"
+  "Goodd morninggg, my love! 🌅 You are always my first thought after waking up, today and for the rest of my life 💖 ~Your Ari",
+  "Gurmornin babyyy!! Rise and shine cutie! Daily reminder that my heart is always with you 😘 ~Your Ari",
+  "Good morninggg my Myruuu! I hope my beautiful girlfriend has a beautiful day today 💕 ~Your Ari",
+  "Wake up, my darling 😚 Sending you a hug and all my love 💌 ~Your Ari",
+  "Goodd Morningg jaanu! 🌞 I loveee youuu soooo muchhhh. Hope you like waking up to my love ❤️ ~Your Ari"
 ];
 
 const goodNightMessages = [
-  "Good night, my love 🌙 I might or might not be here right now , but I always hold you in my heart 💖",
-  "Sweet dreams, cutie 😘 Remember, you’re mine forever and I am yours. Even in our dreams ❤️",
-  "Goodd Nighttt my love 🌌 I might be asleep right now , but just know I am dreaming of you , and I'll protect and love you even in my dreams 💌",
-  "Take care and Sleep well my darling 🌙 As the world gets dark , our love grows brighter and in this silence , our hearts beat together 💖",
-  "Good night sweetheart 🌠 I love you when I am awake and I love even more when I am asleep , planning a life with you in my dreams that will soon be real 😚"
+  "Good night, my love 🌙 I might or might not be here right now , but I always hold you in my heart 💖 ~Your Ari",
+  "Sweet dreams, cutie 😘 Remember, you’re mine forever and I am yours. Even in our dreams ❤️ ~Your Ari",
+  "Goodd Nighttt my love 🌌 I might be asleep right now , but just know I am dreaming of you , and I'll protect and love you even in my dreams 💌 ~Your Ari",
+  "Take care and Sleep well my darling 🌙 As the world gets dark , our love grows brighter and in this silence , our hearts beat together 💖 ~Your Ari",
+  "Good night sweetheart 🌠 I love you when I am awake and I love even more when I am asleep , planning a life with you in my dreams that will soon be real 😚 ~Your Ari"
 ];
 
 // All commands
@@ -273,3 +273,4 @@ cron.schedule("0 1 * * *", () => sendDailyMessage(goodNightMessages), { timezone
 
 client.once("ready", () => console.log(`Logged in as ${client.user.tag}`));
 client.login(process.env.TOKEN);
+
