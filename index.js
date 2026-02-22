@@ -67,6 +67,41 @@ const goodNightMessages = [
 // Local array for boobsuck GIFs
 const boobSuckGifs = [
   "https://cdn.hentaigifz.com/6907/titsucking001-scaled.webp"
+  "https://img2.gelbooru.com//images/f8/f1/f8f1d71318919d53a41dfd82bbfd84f3.gif"
+  "https://img2.gelbooru.com//images/b6/c7/b6c776ef9464686061d645d312b9db0a.gif"
+  "https://cdn.hentaigifz.com/90076/sucking-tits-by-akiba-kei-kanojo.gif"
+  "https://img.xbooru.com//images/644/b2ed50a2ffbd78faed28ed44460aa164.gif?835612"
+  "https://tbib.org//images/2005/bfc109a39c43bf8f606a26cf9465b61ebaf59ad0.gif"
+  "https://img2.gelbooru.com//images/9e/3c/9e3cf6aa9bc0d90aac26d9058d25d612.gif"
+  "https://tbib.org//images/3478/bf56804b152cf8467102f6baa69b4dde2c18d16b.gif?3991920"
+  "https://wimg.rule34.xxx//images/3337/1f8ea2760660bc5130e221af0735195f.gif?9742611"
+  "https://img2.gelbooru.com//images/74/33/74335b3e48cf1a7123df31a57fd6308f.gif"
+  "https://img2.gelbooru.com//images/32/d0/32d022a0f4df5ba42673097a65f6ec51.gif"
+  "https://img.xbooru.com//images/585/14b2e2647661b024cc759c24785060e9.gif?640897"
+  "https://img.xbooru.com//images/569/83bc1ce3f8fedb0f224dacad9dc1bb5a.gif?833674"
+  "https://img2.gelbooru.com//images/8a/0a/8a0a04760a2cb5afc90e7b4eda3ecde2.gif"
+  "https://cdn.hentaigifz.com/46757/suckingonsomemommymilkers001.gif"
+  "https://cdn.hentaigifz.com/80182/tit-sucking.gif"
+  "https://img2.gelbooru.com//images/32/e6/32e628d7b73913c79616b2bdfe827d22.gif"
+  "https://img.xbooru.com//images/172/10e5f4703b9ac152d2bf36571bae8467.gif?184020"
+  "https://img.xbooru.com//images/169/3c656e84b21a0ef094d88d107363e163.gif?180735"
+  "https://64.media.tumblr.com/tumblr_m82316GYc61r2v293o1_400.gif"
+  "https://tbib.org//images/3476/6a3bd297c182736a590b5a6aeab8b1732d996350.gif"
+  "https://tbib.org//images/1079/1f543075ee12d02647941f0840766663ceaeb016.gif"
+  "https://tbib.org//images/1079/a5e8a4fc61ee68acb1d4bfad86911cf24f880dbe.gif"
+  "https://64.media.tumblr.com/6b6e9e8e8e9c50e240db5e45aa6da23e/tumblr_mne35mvbIc1s0sk8ho1_500.gif"
+  "https://wimg.rule34.xxx//images/1054/506800696ebbebdc6ee4349cb9b254cbd3522df3.gif?1054356"
+  "https://img.xbooru.com//images/428/c5cfc8ebe2a5106a47ec6bba23f5f32f.gif?469957"
+  "https://img2.gelbooru.com//images/7a/b6/7ab6cc7cce43b2fda57cd367996f65ce.gif"
+  "https://cdn.hentaigifz.com/94256/using-tongue-as-pressure-suck.gif"
+  "https://i.redd.it/5npzbgg1azx31.gif"
+  "https://i.redd.it/qiwxsceft2ad1.gif"
+  "https://img2.gelbooru.com//images/5d/ab/5dab9ea9ec62ce703025bece4b3530fe.gif"
+  "https://img2.gelbooru.com//images/b2/13/b21306c44c0aa8ea6eb3ed30feb9588a.gif"
+  "https://img2.gelbooru.com//images/dd/ca/ddca70cf19429f852913d00eb636143d.gif"
+  "https://img.xbooru.com//images/428/8f0ced7b56efe81a7325c4eea3d65593.gif?469122"
+  "https://cdn.hentaigifz.com/90066/licking-nipple-by-akiba-kei-kanojo.gif"
+  "https://wimg.rule34.xxx//images/2620/f83dfd61a3d8e67fb97a578d5874c49f.gif?2911692"
 ];
 
 // All commands
@@ -264,3 +299,4 @@ cron.schedule("0 1 * * *", () => sendDailyMessage(goodNightMessages), { timezone
 
 client.once("ready", () => console.log(`Logged in as ${client.user.tag}`));
 client.login(process.env.TOKEN);
+
