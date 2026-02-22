@@ -185,7 +185,7 @@ const fuckgifs = [
   "https://i.redd.it/q0174o2wlbl91.gif",
   "https://cdn.hentaigifz.com/14087/ana001.gif",
   "https://cdn.hentaigifz.com/81760/niizuma-koyomi.gif",
-  "https://i.redd.it/ukdmla02w9y41.gif
+  "https://i.redd.it/ukdmla02w9y41.gif"
   ];
 // All commands
 const actions = {
@@ -392,6 +392,7 @@ cron.schedule("0 1 * * *", () => sendDailyMessage(goodNightMessages), { timezone
 
 client.once("ready", () => console.log(`Logged in as ${client.user.tag}`));
 client.login(process.env.TOKEN);
+
 
 
 
