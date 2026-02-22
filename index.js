@@ -320,7 +320,7 @@ const fingergifs = [
   "https://cdn.hentaigifz.com/92320/finger-play.gif",
   "https://cdn.hentaigifz.com/109924/fingers-being-worked-into-her-cartoon-snatch.gif",
   "https://cdn.hentaigifz.com/110530/fingering-a-wet-anime-cunt.gif",
-  "https://img.xbooru.com/images/612/342a3ccacbe67dbdd55ae884f8ebcf92.gif"
+  "https://img.xbooru.com/images/612/342a3ccacbe67dbdd55ae884f8ebcf92.gif",
   "https://imagex1.sx.cdn.live/images/pinporn/2021/03/29/24864267.gif?width=460",
   "https://tbib.org//images/982/0e8f76246530c2c7e5970455f08500586a31fa8d.gif",
   "https://tbib.org//images/969/c4f492018edf674101fa1bcae976f51d1a2b71cd.gif",
@@ -542,6 +542,7 @@ cron.schedule("0 1 * * *", () => sendDailyMessage(goodNightMessages), { timezone
 
 client.once("ready", () => console.log(`Logged in as ${client.user.tag}`));
 client.login(process.env.TOKEN);
+
 
 
 
