@@ -243,8 +243,8 @@ const fuckgifs = [
    "https://cdn.hentaigifz.com/2023/anime0016.gif",
    "https://cdn.hentaigifz.com/83360/cant-enough-of-those-titties.gif",
    "https://cdn.hentaigifz.com/85530/jitaku-keibiin-2019.gif",
-   "https://cdn.hentaigifz.com/113261/hard-sex.gif"
-  "https://78.media.tumblr.com/cb869d1c41cd21bc67091fdebd37f6f9/tumblr_oryv044Her1v401opo4_1280.gif"
+   "https://cdn.hentaigifz.com/113261/hard-sex.gif",
+  "https://78.media.tumblr.com/cb869d1c41cd21bc67091fdebd37f6f9/tumblr_oryv044Her1v401opo4_1280.gif",
    "https://wetgif.com/wp-content/uploads/hentai-45.gif",
    "https://wetgif.com/wp-content/uploads/hentai-46.gif",
    "https://wetgif.com/wp-content/uploads/hentai-47.gif",
@@ -542,6 +542,7 @@ cron.schedule("0 1 * * *", () => sendDailyMessage(goodNightMessages), { timezone
 
 client.once("ready", () => console.log(`Logged in as ${client.user.tag}`));
 client.login(process.env.TOKEN);
+
 
 
 
