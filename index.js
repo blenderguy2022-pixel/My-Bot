@@ -214,7 +214,7 @@ const actions = {
   eatout: "is absolutely devouring",
   thumbsup: "gives a thumbs up to",
   thinking: "is thinking about",
-  fuck: "is deep inside",
+  fuck: "is sweating and panting because of",
   lick: "licks",
   nom: "noms on",
   poke: "pokes",
@@ -392,6 +392,7 @@ cron.schedule("0 1 * * *", () => sendDailyMessage(goodNightMessages), { timezone
 
 client.once("ready", () => console.log(`Logged in as ${client.user.tag}`));
 client.login(process.env.TOKEN);
+
 
 
 
