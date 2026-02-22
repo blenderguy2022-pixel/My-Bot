@@ -232,11 +232,23 @@ const fuckgifs = [
    "https://wetgif.com/wp-content/uploads/hentai-42.gif",
    "https://wetgif.com/wp-content/uploads/hentai-43.gif",
    "https://wetgif.com/wp-content/uploads/hentai-44.gif",
+   "https://cdn.hentaigifz.com/92502/from-sisters-natsu-no-saigo-no-hi.gif",
+   "https://cdn.hentaigifz.com/87258/from-sisters-natsu-no-saigo-no-hi.gif",
+   "https://i.redd.it/8rh0k0yt43641.gif",
+   "https://cdn.hentaigifz.com/92564/from-sisters-natsu-no-saigo-no-hi.gif",
+   "https://img1.thatpervert.com/pics/post/Anime-VN-Visual-Novels-fandoms-Itou-Makoto-5903793.gif",
+   "https://cdn.hentaigifz.com/107190/mmmm-tasty.gif",
+   "https://gif.acgnngca.com/o/20230412/jbwfdmmvgiw.gif",
+   "https://cdn.hentaigifz.com/70526/anime.gif",
+   "https://cdn.hentaigifz.com/2023/anime0016.gif",
+   "https://cdn.hentaigifz.com/83360/cant-enough-of-those-titties.gif",
+   "https://cdn.hentaigifz.com/85530/jitaku-keibiin-2019.gif",
+   "https://cdn.hentaigifz.com/113261/hard-sex.gif"
+  "https://78.media.tumblr.com/cb869d1c41cd21bc67091fdebd37f6f9/tumblr_oryv044Her1v401opo4_1280.gif"
    "https://wetgif.com/wp-content/uploads/hentai-45.gif",
    "https://wetgif.com/wp-content/uploads/hentai-46.gif",
    "https://wetgif.com/wp-content/uploads/hentai-47.gif",
    "https://wetgif.com/wp-content/uploads/hentai-48.gif",
-   "https://wetgif.com/wp-content/uploads/hentai-49.gif",
    "https://wetgif.com/wp-content/uploads/hentai-50.gif",
    "https://wetgif.com/wp-content/uploads/hentai-51.gif",
    "https://wetgif.com/wp-content/uploads/hentai-52.gif",
@@ -251,6 +263,7 @@ const fuckgifs = [
    "https://wetgif.com/wp-content/uploads/hentai-61.gif",
    "https://wetgif.com/wp-content/uploads/hentai-62.gif",
    "https://wetgif.com/wp-content/uploads/hentai-63.gif",
+   "https://sexdicted.com/wp-content/uploads/2020/05/anime_lesbi-9205.gif",
    "https://wetgif.com/wp-content/uploads/hentai-64.gif",
    "https://wetgif.com/wp-content/uploads/hentai-65.gif",
    "https://wetgif.com/wp-content/uploads/hentai-66.gif",
@@ -269,6 +282,56 @@ const fuckgifs = [
    "https://wetgif.com/wp-content/uploads/hentai-79.gif",
   
   ];
+//Array for fingering 
+const fingergifs = [
+  "https://img.xbooru.com//images/526/79c96619c62455ea23446aaa5d73a80a.gif?575788",
+  "https://cdn.hentaigifz.com/108344/fingering-sweet-pussy.gif",
+  "https://cdn.hentaigifz.com/11814/fingering001.gif",
+  "https://cdn.hentaigifz.com/11814/fingering001.gif",
+  "https://wimg.rule34.xxx//images/7611/7b11f86172ef33eed57c0849c9c6eb70.gif?8685016",
+  "https://cdn.hentaigifz.com/110380/fingering-this-anime-gals-wet-pussy.gif",
+  "https://gif.acgnngca.com/o/20230901/cp3uocdjhvt.gif",
+  "https://cdn.hentaigifz.com/110384/cartoon-cunt-getting-fingered.gif",
+  "https://gif.acgnngca.com/o/20230420/1j0l0zbgvl5.gif",
+  "https://i.redd.it/4bl7y5u1bpta1.gif",
+  "https://img.xbooru.com//images/203/22c48d3d8c8597545fe7731e66a7f802.gif?218653",
+  "https://cdn.hentaigifz.com/109744/hentai-babe-getting-fingered-while-standing.gif",
+  "https://i.redd.it/ui3xhmns35ba1.gif",
+  "https://tbib.org//images/1084/6395decfea62bbebc81d181c1e77e8cb2e38eb50.gif",
+  "https://wimg.rule34.xxx//images/1561/db03ff57d413ae65f7afae96cedda677.gif?8757192",
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJPEL1pTMHy36VisQrGa2OAqciWFMNPxGIUw&s",
+  "https://wimg.rule34.xxx//images/2124/cec2ce6dd4da3865f492fb71d082d5f8.gif?2303690",
+  "https://img.xbooru.com//images/429/fc23fe942bc2de207ddb061ea77b4211.gif?470160",
+  "https://imagex1.sx.cdn.live/images/pinporn/2021/03/28/24862019.gif?width=460",
+  "https://hypnohub.net//images/55/f1/55f1aca44f30a2ce1d8df148ddcec0bf.gif?120610",
+  "https://img.xbooru.com//images/627/070d5d4c03e2fe56e1147250d527f27e.gif?687537",
+  "https://tbib.org//images/1055/72924fdd596313b5664bad717daa1d0be4c78ae1.gif",
+  "https://img.xbooru.com//images/612/ff05632fc976ff1595ac6537b2a9a2e0.gif?671723",
+  "https://tbib.org//images/1419/35906a14c63a59a723244377a284c9e9ed1fb315.gif",
+  "https://imagex1.sx.cdn.live/images/pinporn/2022/11/19/28423558.gif?width=460",
+  "https://cdn.hentaigifz.com/99146/fingering.gif",
+  "https://wimg.rule34.xxx//images/1029/787a31cd96a2cde252c2dbfaafea51f3357957fb.gif?1029116",
+  "https://img.xbooru.com//images/285/d655c7352f89fe541bb8d524aefa92c1.gif?303455",
+  "https://tbib.org//images/1076/b6b59c03cc6b159d678de6af0ee46454e85c521e.gif",
+  "https://cdn.asianporngif.com/106481/asian.gif",
+  "https://img.xbooru.com//images/567/c9bbef0578cccca733ecb64fdd081ef7.gif?619328",
+  "https://tbib.org//images/2686/d2a8511dfde745540ffc14d50eda15d244e23dc7.gif",
+  "https://tbib.org//images/3030/67ec823e4431260752f677e5ad48162c5991b327.gif",
+  "https://cdn.hentaigifz.com/92320/finger-play.gif",
+  "https://cdn.hentaigifz.com/109924/fingers-being-worked-into-her-cartoon-snatch.gif",
+  "https://cdn.hentaigifz.com/110530/fingering-a-wet-anime-cunt.gif",
+  "https://img.xbooru.com/images/612/342a3ccacbe67dbdd55ae884f8ebcf92.gif"
+  "https://imagex1.sx.cdn.live/images/pinporn/2021/03/29/24864267.gif?width=460",
+  "https://tbib.org//images/982/0e8f76246530c2c7e5970455f08500586a31fa8d.gif",
+  "https://tbib.org//images/969/c4f492018edf674101fa1bcae976f51d1a2b71cd.gif",
+  "https://img0.thatpervert.com/pics/post/gif-Agerun-Saiyuki-ass--958416.gif",
+  "https://cdn.hentaigifz.com/92320/finger-play.gif",
+  "https://cdn.hentaigifz.com/64950/wet.gif",
+  "https://cdn.hentaigifz.com/106130/wet-anime-panties-after-long-masturbation.gif",
+  "https://img.xbooru.com//images/567/c9bbef0578cccca733ecb64fdd081ef7.gif?619328"
+];
+  
+  
 // All commands
 const actions = {
   hug: "hugs",
@@ -290,6 +353,7 @@ const actions = {
   bite: "bites",
   blush: "blushes because of",
   cry: "cries because of",
+  finger: "is deeply fingering",
   dance: "dances with",
   smile: "smiles at",
   eepy: "feels eepy next to",
@@ -327,6 +391,10 @@ async function getGif(action) {
 
    if (action === "fuck") {
     return fuckgifs[Math.floor(Math.random() * fuckgifs.length)];
+  }
+
+   if (action === "finger") {
+    return fingergifs[Math.floor(Math.random() * fingergifs.length)];
   }
 
   const apiAction = fallbackMap[action] || action;
@@ -474,6 +542,7 @@ cron.schedule("0 1 * * *", () => sendDailyMessage(goodNightMessages), { timezone
 
 client.once("ready", () => console.log(`Logged in as ${client.user.tag}`));
 client.login(process.env.TOKEN);
+
 
 
 
