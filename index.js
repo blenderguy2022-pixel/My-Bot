@@ -143,7 +143,50 @@ const eatoutgifs = [
   "https://i.redd.it/4wlhcd3pxnxc1.gif",
   "https://tbib.org//images/1996/0563c8c292220e9b01d31a3d384acc245e7b0adf.gif"
 ];
-  
+
+//Local array for fucking gifs
+const fuckgifs = [
+  "https://cdn.hentaigifz.com/46199/animefuck001.gif",
+  "https://cdn.hentaigifz.com/96/sexyanimefemalefuckinghard001.gif",
+  "https://otakusexart.com/wp-content/uploads/2019/09/hentai-onahole-doggystyle-sex-anime-fuck-gif.gif",
+  "https://cdn.hentaigifz.com/72180/fuck.gif",
+  "https://myteenwebcam.com/fapp/gifs/521d40bc16d520b31110014dc80409a1.gif",
+  "https://cdn.hentaigifz.com/107578/anime-teen-fucked.gif",
+  "https://cdn.hentaigifz.com/65596/sexy-petite-teen-fucked-from-behind.gif",
+  "https://cdn.hentaigifz.com/1967/doggystylefuckingwithananimegirl001.gif",
+  "https://i.redd.it/qlmlut1c2vt71.gif",
+  "https://imagex1.sx.cdn.live/images/pinporn/2013/10/07/3788004.gif?width=460",
+  "https://cdn.hentaigifz.com/60574/hentai-gif-cute-anime-girl-fucked-penetration-wet-pussy.gif",
+  "https://megaboobscartoons.com/gals/wp-content/uploads/2015/10/tumblr_n71j969JT71toy0ydo1_500.gif",
+  "https://cdn.hentaigifz.com/58870/teen.gif",
+  "https://cdn.hentaigifz.com/61346/busty-cartoon-teen-xxx-sex-gif.gif",
+  "https://myteenwebcam.com/fapp/gifs/521d40bc16d520b31110014dc80409a1.gif",
+  "https://img1.thatpervert.com/pics/post/Anime-hentai-gif-anime-1090687.gif",
+  "https://cdn.hentaigifz.com/4712/thehoneymoonsuite001.gif",
+  "https://img.xbooru.com//images/171/a619ce7f12d1d2f9e15656d9aae280f4.gif?182442",
+  "https://www.hentairider.com/media/images/3/gif-anime-hentai/gif-anime-hentai-77815.gif",
+  "https://imagex1.sx.cdn.live/images/pinporn/2021/10/03/25998138.gif?width=460",
+  "https://hentaiwikis.com/wp-content/uploads/2022/08/GIFS/hentai%20gif%20porn%20(96).gif",
+  "https://wimg.rule34.xxx//images/1169/3ff39c4eaa2c72fb0ec9f28198d32d4dc174e8c0.gif?1176544",
+  "https://img10.joyreactor.com/pics/post/erotic-nsfw-ecchi-3436214.gif",
+  "https://hentaiporns.net/wp-content/uploads/2018/01/6894690-d7eb1ac49f49fe263af1b65d6ffacdfa.gif",
+  "https://xxxpicss.com/xxx/female-anime-girls-porn-gifs-naked-anime-women-sex-gif-sexy-anime-kiss-gif.gif",
+  "https://cdn.hentaigifz.com/113271/teenie-fucked.gif",
+  "https://blovjob.com/content/2022/09/hentai-gif_001.gif",
+  "https://cdn.hentaigifz.com/64804/petite.gif",
+  "https://cdn.hentaigifz.com/109240/petite-fucked.gif",
+  "https://cdn.hentaigifz.com/108112/tiny-babe.gif",
+  "https://cdn.hentaigifz.com/73498/hentai-gif-39.gif",
+  "https://i.redd.it/v1tg54fdcrle1.gif",
+  "https://tbib.org//images/1419/32192f9219f5e6c69d9f9c10551c338449fa27ee.gif",
+  "https://64.media.tumblr.com/f946d5951f5e813e391f9c4f803ffcd0/tumblr_mvmfa25BwG1sysr50o1_500.gif",
+  "https://blovjob.com/content/2022/12/himeno-kisara-eroge-h-mo-game-mo-kaihatsu-zanmai-animated-animated_001.gif",
+  "https://i.redd.it/hbbbd405o5cg1.gif",
+  "https://i.redd.it/q0174o2wlbl91.gif",
+  "https://cdn.hentaigifz.com/14087/ana001.gif",
+  "https://cdn.hentaigifz.com/81760/niizuma-koyomi.gif",
+  "https://i.redd.it/ukdmla02w9y41.gif
+  ];
 // All commands
 const actions = {
   hug: "hugs",
@@ -171,6 +214,7 @@ const actions = {
   eatout: "is absolutely devouring",
   thumbsup: "gives a thumbs up to",
   thinking: "is thinking about",
+  fuck: "is deep inside",
   lick: "licks",
   nom: "noms on",
   poke: "pokes",
@@ -197,6 +241,10 @@ async function getGif(action) {
 
   if (action === "eatout") {
     return eatoutgifs[Math.floor(Math.random() * eatoutgifs.length)];
+  }
+
+   if (action === "fuck") {
+    return fuckgifs[Math.floor(Math.random() * fuckgifs.length)];
   }
 
   const apiAction = fallbackMap[action] || action;
@@ -344,6 +392,7 @@ cron.schedule("0 1 * * *", () => sendDailyMessage(goodNightMessages), { timezone
 
 client.once("ready", () => console.log(`Logged in as ${client.user.tag}`));
 client.login(process.env.TOKEN);
+
 
 
 
