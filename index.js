@@ -107,7 +107,7 @@ const eatoutgifs = [
   "https://i.redd.it/ao8u4t4v1xwd1.gif",
   "https://cdn.hentaigifz.com/106126/anime-female-gets-pussy-eaten.gif",
   "https://img.xbooru.com//images/514/878ce87ecc7291614cabc045da8e6598.gif?562665",
-  "https://cdn.hentaigifz.com/44831/hentai00115.gif"
+  "https://cdn.hentaigifz.com/44831/hentai00115.gif",
   "https://i.redd.it/j8k7a8f0sfqb1.gif",
   "https://imagex1.sx.cdn.live/images/pinporn/2020/05/13/23017759.gif?width=460",
   "https://i.redd.it/y86l95a8ex2d1.gif",
@@ -344,6 +344,7 @@ cron.schedule("0 1 * * *", () => sendDailyMessage(goodNightMessages), { timezone
 
 client.once("ready", () => console.log(`Logged in as ${client.user.tag}`));
 client.login(process.env.TOKEN);
+
 
 
 
