@@ -93,6 +93,57 @@ const boobSuckGifs = [
   "https://wimg.rule34.xxx//images/2620/f83dfd61a3d8e67fb97a578d5874c49f.gif?2911692"
 ];
 
+//Local Array for Pussy eating gifs 
+const eatoutgifs = [
+  "https://s3.truyen-hentai.com/6983d2001ac5d124268322.gif",
+  "https://cdn.hentaigifz.com/90738/pussy-licking-by-akiba-kei-kanojo.gif",
+  "https://cdn.hentaigifz.com/106128/she-enjoys-getting-her-pussy-eaten.gif",
+  "https://cdn.hentaigifz.com/59460/eat-dat-pussy-d.gif",
+  "https://i.redd.it/t0klz104yk9b1.gif",
+  "https://cdn.hentaigifz.com/88490/sweet-hentai-lick.gif",
+  "https://cdn.hentaigifz.com/79074/lick-more.gif",
+  "https://cdn.hentaigifz.com/104838/pussy-licking.gif",
+  "https://cdn.hentaigifz.com/100486/doll-pussy-being-licked.gif",
+  "https://i.redd.it/ao8u4t4v1xwd1.gif",
+  "https://cdn.hentaigifz.com/106126/anime-female-gets-pussy-eaten.gif",
+  "https://img.xbooru.com//images/514/878ce87ecc7291614cabc045da8e6598.gif?562665",
+  "https://cdn.hentaigifz.com/44831/hentai00115.gif"
+  "https://i.redd.it/j8k7a8f0sfqb1.gif",
+  "https://imagex1.sx.cdn.live/images/pinporn/2020/05/13/23017759.gif?width=460",
+  "https://i.redd.it/y86l95a8ex2d1.gif",
+  "https://i.redd.it/y6iuivxee7o71.gif",
+ "https://i.redd.it/t0klz104yk9b1.gif",
+  "https://i.redd.it/9g42bnhwibid1.gif",
+  "https://i.redd.it/3lr0y1s2k9ua1.gif",
+ "https://imagex1.sx.cdn.live/images/pinporn/2019/11/07/22115159.gif?width=460",
+  "https://cdn.hentaigifz.com/59460/eat-dat-pussy-d.gif",
+  "https://i.redd.it/awuqwowcw8qf1.gif",
+  "https://imagex1.sx.cdn.live/images/pinporn/2014/05/20/6092319.gif?width=460",
+  "https://cdn.hentaigifz.com/94638/pulling-open-labia.gif",
+  "https://cdn.hentaigifz.com/100494/uncensored.gif",
+  "https://img.xbooru.com//images/183/dbfd656e04c342e387638cc451e8fb97.gif?195809",
+  "https://cdn.hentaigifz.com/82484/pussy-scaled.webp",
+  "https://cdn.hentaigifz.com/72478/sisters-natsu-no-saigo-no-hi-scaled.webp",
+  "https://hardgif.com/fallback_screenshot.php?post_id=94743872",
+  "https://i.redd.it/98axg9zbl00g1.gif",
+  "https://img.xbooru.com//images/222/ba2c5ffe3ee4e85f987921ed9f4e2437.gif?335144",
+  "https://www.hentaiporn.com.es/koothoov/2024/05/Hentai-Blonde-1boy-1boy1girl-1girl-69-69-position-aisai.gif",
+  "https://s3.truyen-hentai.com/6844b9a36b376822737250.gif",
+  "https://img.xbooru.com//images/516/e1a4ddb681594f2b40f343199942e744.gif?564759",
+  "https://i.redd.it/846p337704z31.gif",
+  "https://img.xbooru.com//images/163/4c3fa820ef331da77a3bd7260830ab50.gif?173337",
+  "https://wimg.rule34.xxx//images/1029/653f455498b4303f1ed65087e8f516c3dc0548bc.gif?1028531",
+  "https://tbib.org//images/3387/1c53a8443d76292c01f96fe74593a673e216f486.gif",
+  "https://wimg.rule34.xxx//images/2940/bce73d6ababfabe4eee2719e0dd88055.gif?3286270",
+  "https://img.xbooru.com//images/196/fe0b626e37b4e3e82435325f2318a74e.gif?210086",
+  "https://tbib.org//images/2613/18dc1865585f7084633f96e2594bc1343fd5b04a.gif",
+  "https://tbib.org//images/3730/f3a9b6ad57befe4d8efad728ec8df06e8bbd5e51.gif",
+  "https://tbib.org//images/872/77fda5caff0ea56ca07db73527305e1e1626b5c4.gif",
+  "https://img0.thatpervert.com/pics/post/hentai-gif-hentai-Yuri-hentai--2672132.gif",
+  "https://i.redd.it/4wlhcd3pxnxc1.gif",
+  "https://tbib.org//images/1996/0563c8c292220e9b01d31a3d384acc245e7b0adf.gif"
+];
+  
 // All commands
 const actions = {
   hug: "hugs",
@@ -117,6 +168,7 @@ const actions = {
   dance: "dances with",
   smile: "smiles at",
   eepy: "feels eepy next to",
+  eatout: "is absolutely devouring",
   thumbsup: "gives a thumbs up to",
   thinking: "is thinking about",
   lick: "licks",
@@ -141,6 +193,10 @@ const fallbackMap = {
 async function getGif(action) {
   if (action === "boobsuck") {
     return boobSuckGifs[Math.floor(Math.random() * boobSuckGifs.length)];
+  }
+
+  if (action === "eatout") {
+    return eatoutgifs[Math.floor(Math.random() * eatoutgifs.length)];
   }
 
   const apiAction = fallbackMap[action] || action;
@@ -288,6 +344,7 @@ cron.schedule("0 1 * * *", () => sendDailyMessage(goodNightMessages), { timezone
 
 client.once("ready", () => console.log(`Logged in as ${client.user.tag}`));
 client.login(process.env.TOKEN);
+
 
 
 
