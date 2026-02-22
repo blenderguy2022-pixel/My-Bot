@@ -31,7 +31,7 @@ const loveReassurances = [
   "No matter where life takes us, I’ll always love you and only you till the end of time sweetheart.",
   "I’ll never leave you. You’re my everything, my Myru.",
   "Every day, my heart belongs to you and only you and becomes more of you than me.",
-  "I’m yours completely , truly and entirely, forever and always Myru.",
+  "I’m yours completely, truly and entirely, forever and always Myru.",
   "Nothing in this world could make me stop loving you ever meri jaan.",
   "You’re the only one I want to be with, now and always and as long as we live.",
   "I’ll always protect you, care for you, and be here for you. I can't live without my kuchupuchu",
@@ -57,14 +57,19 @@ const goodMorningMessages = [
 ];
 
 const goodNightMessages = [
-  "Good night, my love 🌙 I might or might not be here right now , but I always hold you in my heart 💖 ~Your Ari",
+  "Good night, my love 🌙 I might or might not be here right now, but I always hold you in my heart 💖 ~Your Ari",
   "Sweet dreams, cutie 😘 Remember, you’re mine forever and I am yours. Even in our dreams ❤️ ~Your Ari",
-  "Goodd Nighttt my love 🌌 I might be asleep right now , but just know I am dreaming of you, and I'll protect and love you even in my dreams 💌 ~Your Ari",
-  "Take care and Sleep well my darling 🌙 As the world gets dark , our love grows brighter and in this silence, our hearts beat together 💖 ~Your Ari",
+  "Goodd Nighttt my love 🌌 I might be asleep right now, but just know I am dreaming of you, and I'll protect and love you even in my dreams 💌 ~Your Ari",
+  "Take care and Sleep well my darling 🌙 As the world gets dark, our love grows brighter and in this silence, our hearts beat together 💖 ~Your Ari",
   "Good night sweetheart 🌠 I love you when I am awake and I love even more when I am asleep, planning a life with you in my dreams that will soon be real 😚 ~Your Ari"
 ];
 
-// All actions
+// Local array for boobsuck GIFs
+const boobSuckGifs = [
+  "https://cdn.hentaigifz.com/6907/titsucking001-scaled.webp"
+];
+
+// All commands
 const actions = {
   hug: "hugs",
   kiss: "kisses",
@@ -75,12 +80,12 @@ const actions = {
   reassure: "reassures you that he's only your boyfie forever",
   highfive: "highfives",
   waifu: "becomes a cute waifu for",
+  blowjob: "gives a blowjob to",
+  boobsuck: "sucks on",
   wave: "waves at",
   angry: "is angry at",
   miss: "misses",
   hungry: "is hungry you should help them",
-  blowjob: "gives a blowjob to",
-  cunnilingus: "performs cunnilingus on",
   yearn: "yearns for",
   bite: "bites",
   blush: "blushes because of",
@@ -105,13 +110,15 @@ const fallbackMap = {
   thumbsup: "smile",
   thinking: "smile",
   handholding: "handhold",
-  hungry: "nom",
-  blowjob: "blowjob",
-  cunnilingus: "pussy"
+  hungry: "nom"
 };
 
-// Fetch GIF
-async function getGif(action, isNSFW = false) {
+// Fetch GIF with priority: nekos → waifu → local
+async function getGif(action) {
+  if (action === "boobsuck") {
+    return boobSuckGifs[Math.floor(Math.random() * boobSuckGifs.length)];
+  }
+
   const apiAction = fallbackMap[action] || action;
 
   try {
@@ -121,15 +128,13 @@ async function getGif(action, isNSFW = false) {
   } catch {}
 
   try {
-    if (isNSFW) {
-      const waifuNsfwRes = await fetch(`https://api.waifu.pics/nsfw/${apiAction}`);
-      const waifuNsfwData = await waifuNsfwRes.json();
-      if (waifuNsfwData.url) return waifuNsfwData.url;
-    } else {
-      const waifuSfwRes = await fetch(`https://api.waifu.pics/sfw/${apiAction}`);
-      const waifuSfwData = await waifuSfwRes.json();
-      if (waifuSfwData.url) return waifuSfwData.url;
-    }
+    const waifuSfwRes = await fetch(`https://api.waifu.pics/sfw/${apiAction}`);
+    const waifuSfwData = await waifuSfwRes.json();
+    if (waifuSfwData.url) return waifuSfwData.url;
+
+    const waifuNsfwRes = await fetch(`https://api.waifu.pics/nsfw/${apiAction}`);
+    const waifuNsfwData = await waifuNsfwRes.json();
+    if (waifuNsfwData.url) return waifuNsfwData.url;
   } catch {}
 
   return null;
@@ -141,8 +146,8 @@ function getRandomMessage(arr) {
 }
 
 // Create embed
-async function createActionEmbed(author, target, command, includeMessage = false, isNSFW = false) {
-  const gif = await getGif(command, isNSFW);
+async function createActionEmbed(author, target, command, includeMessage = false) {
+  const gif = await getGif(command);
   if (!gif) return null;
 
   const embed = new EmbedBuilder()
@@ -160,7 +165,7 @@ async function createActionEmbed(author, target, command, includeMessage = false
   return embed;
 }
 
-// Send daily messages
+// Daily messages (hug GIF + morning/night message)
 async function sendDailyMessage(messages) {
   try {
     const user = await client.users.fetch(girlfriendId);
@@ -206,9 +211,9 @@ client.on("messageCreate", async message => {
   if (!target) return message.reply("You must mention someone!");
   if (target.id === message.author.id) return message.reply("You can't use this on yourself 😭");
 
-  const nsfwCommands = ["blowjob", "cunnilingus"];
   const includeMessage = command === "reassure";
-  const embed = await createActionEmbed(message.author, target, command, includeMessage, nsfwCommands.includes(command));
+
+  const embed = await createActionEmbed(message.author, target, command, includeMessage);
   if (!embed) return message.reply("Both APIs failed. Try again later 😢");
 
   let components = [];
