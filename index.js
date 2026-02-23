@@ -44,6 +44,22 @@ const loveReassurances = [
   "I promise to always be faithful, loyal, insanely loving and completely yours Myru baby.",
   "I’ll never let you feel alone, I’m always here jaanu, to cheer you up and to listen to you.",
   "No one could ever replace you in my heart, your place is engraved with a knife into it.",
+  "Even though we aren't present with each other , my love and my attachment to you makes me feel closer to you anybody else",
+  "Your mere presence changed my life from a dusted dungeon to a luxury palace , and you , are the palace of my dreams",
+  "You set my heart on fire in just a single glance and I just knew I had to keep this warmth forever in my life.",
+  "You catch my eyes and pin them to you so deeply they become a pet to you , a pet that looks at nobody else but their owner",
+  "Ever since you set foot into my life , it has become a fairytale with the beautiful fairy of them all - my baby",
+  "My name will always belong with you Myru. I'll always be yours , your Aryan Mishra",
+  "You don't need to earn my love Myru. Its yours because you have always deserved every bit of it and more",
+  "Darling, every layer of you I discover just makes you more special to me",
+  "You could never be too clingy for me baby. I want you as close as I can",
+  "Baby, I respect what we have too much to risk it for something meaningless.You're always my top priority",
+  "You thought knowing you more would make me love you less , but it just increases my love and obsession for you the more I understand this beautiful girl",
+  "I don't compare you to other girls Myru. I compare others to you , and somehow they're always less",
+  "Even on the days you feel insecure and bad , I just see my cute little baby , and hopefully you'll see her too one day.",
+  "Baby, your overthinking doesn’t annoy me. It makes me want to hold you tighter. So ask and tell me everything on your mind and let me reply with the longest paragraphs",
+  "I know your mind sometimes tells you scary things Myru. Those fearful dreams that seem too real and hurt bad. But trust me Myru , nothing from those will ever be true. I’m not those fears.",
+  "I've never felt trapped with you Myru , but only loved , chosen and at home",
   "Everything I am is yours, and I’ll never let that change Myru."
 ];
 
@@ -542,6 +558,7 @@ cron.schedule("0 1 * * *", () => sendDailyMessage(goodNightMessages), { timezone
 
 client.once("ready", () => console.log(`Logged in as ${client.user.tag}`));
 client.login(process.env.TOKEN);
+
 
 
 
