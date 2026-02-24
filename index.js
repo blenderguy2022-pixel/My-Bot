@@ -419,11 +419,11 @@ async function getGiphyGif(searchTerm) {
 
 async function getGif(action) {
 if (action === "plead") {
-  return await getGiphyGif("emotional anime pleading");
+  return await getGiphyGif("emotional tears");
 }
 
 if (action === "apologise") {
-  return await getGiphyGif("cute anime apologising");
+  return await getGiphyGif("I apologise");
 }
   
   if (action === "boobsuck") {
@@ -587,6 +587,7 @@ cron.schedule("0 1 * * *", () => sendDailyMessage(goodNightMessages), { timezone
 
 client.once("ready", () => console.log(`Logged in as ${client.user.tag}`));
 client.login(process.env.TOKEN);
+
 
 
 
