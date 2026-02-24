@@ -362,6 +362,8 @@ const actions = {
   blowjob: "gives a blowjob to",
   boobsuck: "sucks on",
   wave: "waves at",
+  plead: "pleads",
+  apologise: "apologises to",
   angry: "is angry at",
   miss: "misses",
   hungry: "is hungry you should help them",
@@ -396,7 +398,34 @@ const fallbackMap = {
 };
 
 // Fetch GIF with priority: nekos → waifu → local
+async function getGiphyGif(searchTerm) {
+  try {
+    const res = await fetch(
+      `https://api.giphy.com/v1/gifs/search?api_key=${process.env.GIPHY_KEY}&q=${encodeURIComponent(searchTerm)}&limit=25&rating=r`
+    );
+
+    const data = await res.json();
+
+    if (data.data && data.data.length > 0) {
+      const random = data.data[Math.floor(Math.random() * data.data.length)];
+      return random.images.original.url;
+    }
+  } catch (err) {
+    console.log("Giphy error:", err);
+  }
+
+  return null;
+}
+
 async function getGif(action) {
+if (action === "plead") {
+  return await getGiphyGif("emotional anime pleading");
+}
+
+if (action === "apologise") {
+  return await getGiphyGif("cute anime apologising");
+}
+  
   if (action === "boobsuck") {
     return boobSuckGifs[Math.floor(Math.random() * boobSuckGifs.length)];
   }
@@ -558,6 +587,7 @@ cron.schedule("0 1 * * *", () => sendDailyMessage(goodNightMessages), { timezone
 
 client.once("ready", () => console.log(`Logged in as ${client.user.tag}`));
 client.login(process.env.TOKEN);
+
 
 
 
