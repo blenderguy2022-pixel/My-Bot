@@ -585,7 +585,7 @@ client.on("interactionCreate", async interaction => {
 cron.schedule("0 7 * * *", () => sendDailyMessage(goodMorningMessages), { timezone: "Asia/Kolkata" });
 cron.schedule("0 1 * * *", () => sendDailyMessage(goodNightMessages), { timezone: "Asia/Kolkata" });
 
-client.once("ready", () => console.log(`Logged in as ${client.user.tag}`));
+client.once("clientReady", () => console.log(`Logged in as ${client.user.tag}`));
 client.login(process.env.TOKEN);
 
 const express = require("express");
