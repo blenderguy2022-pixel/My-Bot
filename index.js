@@ -588,7 +588,17 @@ cron.schedule("0 1 * * *", () => sendDailyMessage(goodNightMessages), { timezone
 client.once("ready", () => console.log(`Logged in as ${client.user.tag}`));
 client.login(process.env.TOKEN);
 
+const express = require("express");
+const app = express();
 
+app.get("/", (req, res) => {
+  res.send("Bot is alive!");
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Web server running on port ${PORT}`);
+});
 
 
 
